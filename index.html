@@ -1,0 +1,1573 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuna Yoru // Personal Recovery System</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #0c0a12;
+    --card: #171321;
+    --card2: #211a2e;
+    --purple: #b58af2;
+    --pink: #ec9bcf;
+    --white: #f5efff;
+    --muted: #aaa0b8;
+    --border: rgba(181,138,242,0.18);
+    --green: #9de0b2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6;
+}
+
+button, input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1100px, 90%);
+    margin: auto;
+}
+
+/* NAVIGATION */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(12,10,18,0.92);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+    width: min(1100px, 90%);
+    margin: auto;
+    min-height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--pink);
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    font-size: 12px;
+    color: var(--muted);
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--pink);
+}
+
+/* GENERAL */
+
+section {
+    scroll-margin-top: 90px;
+}
+
+.section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 5vw, 42px);
+    margin-bottom: 12px;
+}
+
+.section-subtitle {
+    color: var(--muted);
+    margin-bottom: 30px;
+    max-width: 650px;
+}
+
+.eyebrow {
+    color: var(--purple);
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 25px;
+    transition: 0.25s ease;
+}
+
+.card:hover {
+    border-color: rgba(181,138,242,0.5);
+    transform: translateY(-3px);
+}
+
+.primary-btn {
+    border: none;
+    border-radius: 9px;
+    padding: 12px 22px;
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    color: #170e20;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.secondary-btn {
+    background: transparent;
+    color: var(--purple);
+    border: 1px solid var(--purple);
+    border-radius: 9px;
+    padding: 10px 18px;
+    font-weight: 600;
+}
+
+.secondary-btn:hover {
+    background: rgba(181,138,242,0.1);
+}
+
+/* HERO */
+
+.hero {
+    min-height: 570px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 80% 40%, rgba(125,70,170,0.2), transparent 45%),
+        radial-gradient(ellipse at 15% 80%, rgba(236,155,207,0.08), transparent 40%);
+}
+
+.hero-content {
+    padding: 90px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(50px, 9vw, 95px);
+    line-height: 1;
+    letter-spacing: -4px;
+    margin: 20px 0;
+}
+
+.hero h1 span {
+    color: var(--pink);
+}
+
+.hero-description {
+    max-width: 540px;
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 28px;
+}
+
+.hero-tag {
+    display: inline-block;
+    border: 1px solid var(--border);
+    background: rgba(181,138,242,0.08);
+    color: var(--purple);
+    padding: 7px 13px;
+    border-radius: 30px;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.hero-decoration {
+    position: absolute;
+    right: 8%;
+    top: 20%;
+    font-size: clamp(100px, 20vw, 220px);
+    color: rgba(181,138,242,0.12);
+    animation: float 5s ease-in-out infinite;
+    user-select: none;
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-18px); }
+}
+
+/* PROFILE */
+
+.profile-section {
+    padding: 80px 0;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.profile-main {
+    background: linear-gradient(135deg, #241a32, #171321);
+}
+
+.profile-main h2 {
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.profile-main p,
+.profile-stat p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
+}
+
+.profile-stat strong {
+    display: block;
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--pink);
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+/* SYSTEM ANNOUNCEMENTS */
+
+.announcements {
+    padding: 20px 0 80px;
+}
+
+.announcement-list {
+    display: grid;
+    gap: 12px;
+}
+
+.announcement {
+    background: var(--card);
+    border-left: 3px solid var(--purple);
+    border-radius: 8px;
+    padding: 17px 20px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.announcement strong {
+    color: var(--pink);
+}
+
+/* SIDE QUESTS */
+
+.quests {
+    padding: 70px 0;
+    background: rgba(255,255,255,0.015);
+}
+
+.quest-list {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 13px;
+}
+
+.quest-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 10px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.quest-item input {
+    accent-color: var(--purple);
+    width: 18px;
+    height: 18px;
+}
+
+/* ARCADE */
+
+.arcade {
+    padding: 85px 0;
+}
+
+.arcade-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.arcade-card h3 {
+    font-size: 21px;
+    margin: 12px 0;
+}
+
+.arcade-card p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.trivia-question {
+    color: var(--white);
+    font-size: 17px;
+    font-weight: 700;
+    margin: 20px 0;
+}
+
+.trivia-options {
+    display: grid;
+    gap: 10px;
+}
+
+.trivia-option {
+    text-align: left;
+    background: #211a2e;
+    border: 1px solid var(--border);
+    color: var(--white);
+    padding: 13px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.trivia-option:hover:not(:disabled) {
+    border-color: var(--purple);
+    background: #30233f;
+}
+
+.trivia-option:disabled {
+    cursor: default;
+    opacity: 0.9;
+}
+
+.trivia-option.correct {
+    border-color: var(--green);
+    color: var(--green);
+}
+
+.trivia-option.wrong {
+    border-color: #e58a9b;
+    color: #e58a9b;
+}
+
+.trivia-feedback {
+    margin-top: 15px;
+    font-size: 13px;
+    color: var(--muted);
+    min-height: 42px;
+}
+
+.trivia-progress {
+    height: 5px;
+    background: #30283a;
+    border-radius: 10px;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.trivia-progress div {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg,var(--purple),var(--pink));
+    transition: 0.3s;
+}
+
+.trivia-meta {
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.trivia-result {
+    display: none;
+    text-align: center;
+    padding: 25px 0;
+}
+
+.trivia-result h3 {
+    color: var(--pink);
+    font-size: 28px;
+    margin: 12px 0;
+}
+
+.trivia-result p {
+    color: var(--muted);
+}
+
+/* LUCKY DRAW */
+
+.draw-result {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 17px;
+    color: var(--pink);
+    padding: 15px;
+    margin: 15px 0;
+    background: rgba(181,138,242,0.06);
+    border-radius: 10px;
+}
+
+/* RANDOM MESSAGE */
+
+.chaos {
+    padding: 70px 0;
+    background: rgba(255,255,255,0.015);
+}
+
+.chaos-box {
+    text-align: center;
+    max-width: 700px;
+    margin: auto;
+}
+
+.random-message {
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(18px, 3vw, 25px);
+    color: var(--pink);
+    padding: 20px;
+}
+
+/* COMPLIMENT */
+
+.compliment {
+    padding: 80px 0;
+}
+
+.compliment-box {
+    text-align: center;
+    background: linear-gradient(135deg,#251a35,#171321);
+    max-width: 750px;
+    margin: auto;
+}
+
+.compliment-box h2 {
+    margin: 12px 0;
+}
+
+.compliment-text {
+    color: var(--pink);
+    font-size: 19px;
+    margin: 25px 0;
+    min-height: 55px;
+}
+
+/* ACHIEVEMENTS */
+
+.achievements {
+    padding: 70px 0;
+}
+
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+}
+
+.achievement {
+    text-align: center;
+}
+
+.achievement .emoji {
+    font-size: 35px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.achievement h3 {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.achievement p {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* SLEEP PAGE */
+
+.sleep-section {
+    padding: 90px 0;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(111,70,150,0.12), transparent 45%);
+}
+
+.sleep-header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.sleep-header h2 {
+    font-family: 'Space Grotesk',sans-serif;
+    font-size: clamp(38px,7vw,65px);
+    margin: 15px 0;
+    letter-spacing: 2px;
+}
+
+.sleep-header h2 span {
+    color: var(--pink);
+}
+
+.sleep-subtitle {
+    color: var(--muted);
+    max-width: 620px;
+    margin: auto;
+    line-height: 1.8;
+}
+
+.sleep-intro {
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 38px;
+    background: linear-gradient(135deg,#251a35,#171321);
+}
+
+.sleep-icon {
+    font-size: 38px;
+}
+
+.sleep-intro h3 {
+    margin: 15px 0;
+}
+
+.sleep-intro p {
+    max-width: 720px;
+    margin: auto;
+    color: var(--muted);
+    line-height: 1.9;
+    font-size: 14px;
+}
+
+.sleep-grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 18px;
+}
+
+.sleep-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    transition: 0.25s;
+}
+
+.sleep-card:hover {
+    border-color: var(--purple);
+    transform: translateY(-3px);
+}
+
+.sleep-number {
+    color: var(--purple);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.sleep-card h3 {
+    font-family: 'Space Grotesk',sans-serif;
+    font-size: 20px;
+    margin: 13px 0;
+}
+
+.sleep-card p,
+.sleep-card li {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.85;
+}
+
+.sleep-card ul {
+    padding-left: 19px;
+    margin-top: 14px;
+}
+
+.sleep-card li {
+    margin-bottom: 8px;
+}
+
+.sleep-quote {
+    margin-top: 18px;
+    padding: 15px;
+    border-left: 3px solid var(--pink);
+    color: var(--pink);
+    font-style: italic;
+    background: rgba(236,155,207,0.06);
+    border-radius: 5px;
+}
+
+.sleep-checklist {
+    margin-top: 25px;
+}
+
+.sleep-checklist h3 {
+    font-size: 23px;
+    margin: 12px 0 5px;
+}
+
+.sleep-checklist > p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.sleep-checklist label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--muted);
+    padding: 13px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.sleep-checklist input {
+    accent-color: var(--purple);
+    width: 18px;
+    height: 18px;
+}
+
+.sleep-warning {
+    margin-top: 25px;
+    padding: 28px;
+    border: 1px solid rgba(236,155,207,0.3);
+    border-radius: 15px;
+    background: rgba(236,155,207,0.05);
+}
+
+.sleep-warning h3 {
+    color: var(--pink);
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.sleep-warning p {
+    color: var(--muted);
+    line-height: 1.85;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.sleep-ending {
+    text-align: center;
+    padding: 65px 15px 20px;
+}
+
+.moon-animation {
+    font-size: 55px;
+    color: var(--pink);
+    animation: moonGlow 3s infinite alternate;
+}
+
+.sleep-ending h3 {
+    font-family: 'Space Grotesk',sans-serif;
+    margin: 15px 0;
+    letter-spacing: 2px;
+}
+
+.sleep-ending p {
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.sleep-ending span {
+    display: block;
+    margin-top: 25px;
+    color: var(--purple);
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+@keyframes moonGlow {
+    from { opacity: 0.6; transform: translateY(0); }
+    to { opacity: 1; transform: translateY(-7px); }
+}
+
+/* FOOTER */
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 35px 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+footer strong {
+    color: var(--pink);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:750px) {
+    .nav-inner {
+        flex-direction: column;
+        padding: 15px 0;
+    }
+
+    .nav-links {
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .profile-grid,
+    .arcade-grid,
+    .sleep-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quest-list {
+        grid-template-columns: 1fr;
+    }
+
+    .achievement-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .hero-decoration {
+        right: 0;
+        top: 15%;
+        opacity: 0.6;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+    <div class="nav-inner">
+        <div class="logo">NY // SYSTEM</div>
+        <div class="nav-links">
+            <a href="#home">HOME</a>
+            <a href="#profile">PROFILE</a>
+            <a href="#quests">MISSIONS</a>
+            <a href="#arcade">ARCADE</a>
+            <a href="#sleep">SLEEP 🌙</a>
+            <a href="#chaos">CHAOS</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="container hero-content">
+        <span class="hero-tag">PERSONAL SYSTEM // PLAYER 001</span>
+        <p class="eyebrow" style="margin-top:25px;">WELCOME BACK, PLAYER.</p>
+
+        <h1>HEY,<br><span>NUNA.</span></h1>
+
+        <p class="hero-description">
+            Congratulations. You have officially unlocked new day.
+            Your current mission is to collect experiences,
+            enjoy your favorite things, and occasionally remember to
+            take care of yourself. Very difficult quest, apparently.
+        </p>
+
+        <a href="#profile">
+            <button class="primary-btn">ENTER YOUR SYSTEM →</button>
+        </a>
+    </div>
+
+    <div class="hero-decoration">☾</div>
+</section>
+
+<!-- PROFILE -->
+<section class="profile-section container" id="profile">
+    <p class="eyebrow">PLAYER INFORMATION</p>
+    <h2 class="section-title">CHARACTER PROFILE</h2>
+    <p class="section-subtitle">
+        Every protagonist has their own storyline. This one is still developing.
+    </p>
+
+    <div class="profile-grid">
+        <div class="card profile-main">
+            <span class="eyebrow">PLAYER NAME</span>
+            <h2>NUNA YORU</h2>
+            <p>
+                Certified Lookism enthusiast. Professional overthinker.
+                Occasional menace. Currently progressing through an
+                unpredictable character development arc.
+            </p>
+            <br>
+            <span class="hero-tag">SPECIAL INTEREST: LOOKISM</span>
+        </div>
+
+        <div class="stats">
+            <div class="card profile-stat">
+                <strong>100%</strong>
+                <p>Main character energy</p>
+            </div>
+            <div class="card profile-stat">
+                <strong>???</strong>
+                <p>Remaining potential</p>
+            </div>
+            <div class="card profile-stat">
+                <strong>∞</strong>
+                <p>Plot twists survived</p>
+            </div>
+            <div class="card profile-stat">
+                <strong>SSS</strong>
+                <p>Lookism enthusiasm</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ANNOUNCEMENTS -->
+<section class="announcements container">
+    <p class="eyebrow">SYSTEM NOTIFICATIONS</p>
+    <h2 class="section-title">IMPORTANT ANNOUNCEMENTS</h2>
+
+    <div class="announcement-list">
+        <div class="announcement">
+            <strong>[SYSTEM]</strong> Your overthinking subscription has been automatically renewed. Cancel anytime.
+        </div>
+        <div class="announcement">
+            <strong>[WARNING]</strong> Looking at the ceiling for three hours will not magically solve tomorrow's problems.
+        </div>
+        <div class="announcement">
+            <strong>[UPDATE]</strong> You are legally allowed to have a bad day without turning it into a bad life.
+        </div>
+        <div class="announcement">
+            <strong>[LOOKISM ALERT]</strong> Another chapter has been released. Productivity has left the building.
+        </div>
+    </div>
+</section>
+
+<!-- SIDE QUESTS -->
+<section class="quests" id="quests">
+    <div class="container">
+        <p class="eyebrow">OPTIONAL DAILY MISSIONS</p>
+        <h2 class="section-title">TODAY'S SIDE QUESTS</h2>
+        <p class="section-subtitle">
+            No pressure. No ranking. Just little things that might make the day better.
+        </p>
+
+        <div class="quest-list">
+            <label class="quest-item">
+                <input type="checkbox">
+                Drink some water.
+            </label>
+
+            <label class="quest-item">
+                <input type="checkbox">
+                Listen to a song you genuinely enjoy.
+            </label>
+
+            <label class="quest-item">
+                <input type="checkbox">
+                Spend a little time away from your phone.
+            </label>
+
+            <label class="quest-item">
+                <input type="checkbox">
+                Do something creative, even for five minutes.
+            </label>
+
+            <label class="quest-item">
+                <input type="checkbox">
+                Get some fresh air or daylight.
+            </label>
+
+            <label class="quest-item">
+                <input type="checkbox">
+                Give yourself permission to rest.
+            </label>
+        </div>
+    </div>
+</section>
+
+<!-- ARCADE -->
+<section class="arcade container" id="arcade">
+    <p class="eyebrow">ENTERTAINMENT DATABASE</p>
+    <h2 class="section-title">THE ARCADE</h2>
+    <p class="section-subtitle">
+        Let's see whether your Lookism knowledge is actually impressive.
+    </p>
+
+    <div class="arcade-grid">
+
+        <!-- TRIVIA -->
+        <div class="card arcade-card">
+            <span class="eyebrow">GAME 01 // KNOWLEDGE TEST</span>
+            <h3>LOOKISM EXPERT TRIVIA</h3>
+            <p>
+                Ten questions. Character lore, crews, relationships,
+                and the complicated world of Lookism.
+            </p>
+
+            <div id="triviaGame">
+                <div class="trivia-meta">
+                    <span id="questionCounter">QUESTION 1 / 10</span>
+                    <span id="scoreDisplay">SCORE: 0</span>
+                </div>
+
+                <div class="trivia-progress">
+                    <div id="progressBar"></div>
+                </div>
+
+                <div class="trivia-question" id="questionText">
+                    Loading question...
+                </div>
+
+                <div class="trivia-options" id="optionsContainer"></div>
+
+                <div class="trivia-feedback" id="feedback"></div>
+
+                <button class="primary-btn" id="nextButton" style="display:none;margin-top:15px;">
+                    NEXT QUESTION →
+                </button>
+            </div>
+
+            <div class="trivia-result" id="triviaResult">
+                <span style="font-size:45px;">🏆</span>
+                <h3 id="finalRank">LOOKISM MASTER</h3>
+                <p id="finalScore"></p>
+                <p id="finalDescription" style="margin:15px 0 25px;"></p>
+                <button class="primary-btn" onclick="restartTrivia()">PLAY AGAIN</button>
+            </div>
+        </div>
+
+        <!-- LUCKY DRAW -->
+        <div class="card arcade-card">
+            <span class="eyebrow">GAME 02 // RANDOM EVENT</span>
+            <h3>THE LUCKY DRAW</h3>
+            <p>
+                A mysterious system has generated a random event.
+                Your destiny is in the hands of questionable algorithms.
+            </p>
+
+            <div class="draw-result" id="drawResult">
+                Your random event awaits...
+            </div>
+
+            <button class="primary-btn" onclick="luckyDraw()">DRAW YOUR DESTINY</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- RANDOM MESSAGES -->
+<section class="chaos" id="chaos">
+    <div class="container chaos-box">
+        <p class="eyebrow">UNPREDICTABLE SYSTEM EVENT</p>
+        <h2 class="section-title">RANDOM MESSAGE GENERATOR</h2>
+        <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">
+            Click the button. The system has absolutely no professional qualifications.
+        </p>
+
+        <div class="card">
+            <div class="random-message" id="randomMessage">
+                Waiting for system input...
+            </div>
+            <button class="primary-btn" onclick="generateMessage()">GENERATE MESSAGE</button>
+        </div>
+    </div>
+</section>
+
+<!-- COMPLIMENTS -->
+<section class="compliment container">
+    <div class="card compliment-box">
+        <span class="eyebrow">SECRET CHARACTER DEVELOPMENT MESSAGE</span>
+        <h2 class="section-title">A LITTLE REMINDER</h2>
+
+        <div class="compliment-text" id="complimentText">
+            You are more than the difficult moments you're going through.
+        </div>
+
+        <button class="secondary-btn" onclick="newCompliment()">ANOTHER REMINDER</button>
+    </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="achievements container">
+    <p class="eyebrow">PLAYER PROGRESSION</p>
+    <h2 class="section-title">UNLOCKED ACHIEVEMENTS</h2>
+    <p class="section-subtitle">
+        Some achievements don't come with trophies.
+    </p>
+
+    <div class="achievement-grid">
+        <div class="card achievement">
+            <span class="emoji">🌱</span>
+            <h3>STILL GROWING</h3>
+            <p>Continuing your story.</p>
+        </div>
+
+        <div class="card achievement">
+            <span class="emoji">🎨</span>
+            <h3>CREATIVE SOUL</h3>
+            <p>Keeping imagination alive.</p>
+        </div>
+
+        <div class="card achievement">
+            <span class="emoji">📖</span>
+            <h3>LORE EXPERT</h3>
+            <p>Dedicated Lookism enthusiast.</p>
+        </div>
+
+        <div class="card achievement">
+            <span class="emoji">☁️</span>
+            <h3>ONE DAY AT A TIME</h3>
+            <p>Learning to take things slowly.</p>
+        </div>
+
+        <div class="card achievement">
+            <span class="emoji">💜</span>
+            <h3>SELF-KINDNESS</h3>
+            <p>Learning to be kinder to yourself.</p>
+        </div>
+
+        <div class="card achievement">
+            <span class="emoji">🌙</span>
+            <h3>RECOVERY ARC</h3>
+            <p>Making room for proper rest.</p>
+        </div>
+    </div>
+</section>
+
+<!-- SLEEP & RECOVERY -->
+<section class="sleep-section" id="sleep">
+    <div class="container">
+
+        <div class="sleep-header">
+            <span class="eyebrow">WELLNESS DATABASE // 001</span>
+            <h2>THE ART OF <span>REST</span></h2>
+            <p class="sleep-subtitle">
+                A practical, evidence-informed guide to better sleep,
+                nighttime overthinking, and mental recovery.
+            </p>
+        </div>
+
+        <!-- INTRO -->
+        <div class="card sleep-intro">
+            <span class="sleep-icon">🌙</span>
+            <h3>FIRST, A LITTLE REMINDER</h3>
+            <p>
+                You don't have to solve every problem before going to sleep.
+                You don't have to figure out your entire future tonight.
+                Rest is not something you need to earn by being productive.
+                Your mind deserves a break, even when life feels complicated.
+            </p>
+        </div>
+
+        <!-- ADVICE GRID -->
+        <div class="sleep-grid">
+
+            <div class="sleep-card">
+                <span class="sleep-number">01 // ROUTINE</span>
+                <h3>Build a consistent sleep schedule</h3>
+                <p>
+                    Your body has an internal clock called the circadian rhythm.
+                    Keeping a relatively consistent bedtime and wake-up time
+                    helps regulate it.
+                </p>
+                <ul>
+                    <li>Wake up at approximately the same time every day.</li>
+                    <li>Teenagers generally need 8–10 hours of sleep.</li>
+                    <li>Avoid dramatically changing your sleep schedule on weekends.</li>
+                    <li>Create a relaxing routine before bedtime.</li>
+                </ul>
+            </div>
+
+            <div class="sleep-card">
+                <span class="sleep-number">02 // ENVIRONMENT</span>
+                <h3>Design your sleep environment</h3>
+                <p>
+                    Your bedroom should help your brain associate the environment
+                    with relaxation and rest.
+                </p>
+                <ul>
+                    <li>Keep the room comfortably cool, quiet, and dark.</li>
+                    <li>Use comfortable bedding and pillows.</li>
+                    <li>Reduce unnecessary noise and bright lighting.</li>
+                    <li>Keep stressful activities away from your bed when possible.</li>
+                </ul>
+            </div>
+
+            <div class="sleep-card">
+                <span class="sleep-number">03 // DIGITAL HABITS</span>
+                <h3>Give your brain a digital break</h3>
+                <p>
+                    Endless scrolling and stimulating content can make it harder
+                    to transition into a relaxed state.
+                </p>
+                <ul>
+                    <li>Try putting your phone away 30–60 minutes before bed.</li>
+                    <li>Lower screen brightness in the evening.</li>
+                    <li>Avoid emotionally stressful conversations right before sleeping.</li>
+                    <li>Replace scrolling with reading, calm music, or journaling.</li>
+                </ul>
+            </div>
+
+            <div class="sleep-card">
+                <span class="sleep-number">04 // MENTAL WELLNESS</span>
+                <h3>Quiet the nighttime overthinking</h3>
+                <p>
+                    Sometimes the hardest part of sleeping isn't feeling tired.
+                    It's having a mind that refuses to slow down.
+                </p>
+                <ul>
+                    <li>Write down worries instead of repeatedly thinking about them.</li>
+                    <li>Make a short list of things you can deal with tomorrow.</li>
+                    <li>Try slow, comfortable breathing without forcing it.</li>
+                    <li>Remind yourself that nighttime is not the time to solve everything.</li>
+                </ul>
+
+                <div class="sleep-quote">
+                    "Not every thought deserves your attention at 2 AM."
+                </div>
+            </div>
+
+            <div class="sleep-card">
+                <span class="sleep-number">05 // DAILY HABITS</span>
+                <h3>Support your natural sleep cycle</h3>
+                <ul>
+                    <li>Get some natural daylight in the morning.</li>
+                    <li>Include enjoyable physical activity during the day.</li>
+                    <li>Avoid caffeine late in the day, especially energy drinks.</li>
+                    <li>Avoid heavy meals immediately before bedtime if they make you uncomfortable.</li>
+                    <li>If you nap, keep it relatively short and avoid late-evening naps.</li>
+                </ul>
+            </div>
+
+            <div class="sleep-card">
+                <span class="sleep-number">06 // WHEN SLEEP DOESN'T COME</span>
+                <h3>Don't turn bedtime into a battle</h3>
+                <p>
+                    If you cannot fall asleep and become increasingly frustrated,
+                    don't force yourself to remain in bed indefinitely.
+                </p>
+                <ul>
+                    <li>Try a quiet, relaxing activity in dim lighting.</li>
+                    <li>Return to bed when you feel sleepy again.</li>
+                    <li>Avoid repeatedly checking the time.</li>
+                    <li>Keep your wake-up time reasonably consistent.</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- CHECKLIST -->
+        <div class="sleep-card sleep-checklist">
+            <span class="eyebrow">DAILY RECOVERY PROTOCOL</span>
+            <h3>Your gentle nighttime checklist</h3>
+            <p>Small habits. No perfection required.</p>
+
+            <label>
+                <input type="checkbox">
+                I prepared for tomorrow.
+            </label>
+
+            <label>
+                <input type="checkbox">
+                I reduced stimulating screen time.
+            </label>
+
+            <label>
+                <input type="checkbox">
+                I made my room comfortable.
+            </label>
+
+            <label>
+                <input type="checkbox">
+                I gave myself some time to relax.
+            </label>
+
+            <label>
+                <input type="checkbox">
+                I stopped expecting myself to solve everything tonight.
+            </label>
+        </div>
+
+        <!-- PROFESSIONAL SUPPORT -->
+        <div class="sleep-warning">
+            <h3>WHEN TO SEEK EXTRA SUPPORT</h3>
+
+            <p>
+                Occasional sleepless nights happen. But if difficulty sleeping
+                continues, affects daily life, or leaves you constantly exhausted,
+                consider talking with a healthcare professional.
+            </p>
+
+            <p>
+                Cognitive Behavioral Therapy for Insomnia (CBT-I) is an established
+                treatment for persistent insomnia. A healthcare professional can
+                help determine whether it is appropriate.
+            </p>
+
+            <p>
+                If family stress or emotional difficulties are affecting your
+                sleep, talking with a trusted person, school counselor, or mental
+                health professional can also help. You don't have to manage
+                everything alone.
+            </p>
+        </div>
+
+        <!-- ENDING -->
+        <div class="sleep-ending">
+            <div class="moon-animation">☾</div>
+            <h3>YOU'VE DONE ENOUGH FOR TODAY.</h3>
+            <p>
+                Tomorrow is another opportunity to figure things out.
+                For now, let yourself rest.
+            </p>
+            <span>END OF RECOVERY PROTOCOL // GOOD NIGHT, NUNA.</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p>PERSONAL SYSTEM // CREATED WITH <strong>💜</strong></p>
+        <p style="margin-top:8px;">NUNA YORU — YOUR STORY IS STILL BEING WRITTEN.</p>
+    </div>
+</footer>
+
+<script>
+
+/* =====================================
+   LOOKISM EXPERT TRIVIA
+===================================== */
+
+const questions = [
+    {
+        q: "Who trained Vasco in boxing?",
+        options: ["Gun Park", "Brekdak", "Tom Lee", "Gongseop Ji"],
+        answer: 1,
+        explanation: "Brekdak is the legendary Muay Thai fighter who trained Vasco."
+    },
+    {
+        q: "Who became Zack Lee's boxing mentor?",
+        options: ["Gongseop Ji", "Jichang Kwak", "Taesoo Ma", "Gapryong Kim"],
+        answer: 0,
+        explanation: "Gongseop Ji, the former King of Daegu, trained Zack."
+    },
+    {
+        q: "Which character trained Eli Jang?",
+        options: ["Gun Park", "Tom Lee", "Charles Choi", "James Lee"],
+        answer: 1,
+        explanation: "Tom Lee trained Eli and helped develop his fighting abilities."
+    },
+    {
+        q: "What was Johan Seong's crew called?",
+        options: ["Big Deal", "Hostel", "God Dog", "Burn Knuckles"],
+        answer: 2,
+        explanation: "Johan established God Dog before becoming involved in the larger crew conflicts."
+    },
+    {
+        q: "Who is Jake Kim's father?",
+        options: ["Charles Choi", "Gapryong Kim", "Tom Lee", "Elite"],
+        answer: 1,
+        explanation: "Jake is the son of Gapryong Kim, a legendary figure from the first generation's preceding era."
+    },
+    {
+        q: "What is the name of Eli Jang's daughter?",
+        options: ["Crystal", "Yenna", "Mary", "Mira"],
+        answer: 1,
+        explanation: "Eli's daughter is Yenna."
+    },
+    {
+        q: "How many major affiliates make up Workers?",
+        options: ["Two", "Three", "Four", "Five"],
+        answer: 2,
+        explanation: "Workers operates through four major affiliates."
+    },
+    {
+        q: "Gun Park belongs to which family?",
+        options: ["Kwak family", "Yamazaki family", "Kim family", "Seo family"],
+        answer: 1,
+        explanation: "Gun is connected to the Yamazaki family and its powerful lineage."
+    },
+    {
+        q: "Who is known as the White Snake?",
+        options: ["Warren Chae", "Johan Seong", "Zack Lee", "Eli Jang"],
+        answer: 0,
+        explanation: "Warren Chae is associated with the White Snake nickname."
+    },
+    {
+        q: "Which character has a close association with Goo Kim?",
+        options: ["Samuel Seo", "Logan Lee", "Vasco", "Jay Hong"],
+        answer: 0,
+        explanation: "Samuel Seo has connections to Goo through the Workers storyline."
+    }
+];
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+const questionText = document.getElementById("questionText");
+const optionsContainer = document.getElementById("optionsContainer");
+const feedback = document.getElementById("feedback");
+const nextButton = document.getElementById("nextButton");
+const questionCounter = document.getElementById("questionCounter");
+const scoreDisplay = document.getElementById("scoreDisplay");
+const progressBar = document.getElementById("progressBar");
+
+function loadQuestion() {
+    answered = false;
+
+    const q = questions[currentQuestion];
+
+    questionCounter.textContent =
+        `QUESTION ${currentQuestion + 1} / ${questions.length}`;
+
+    scoreDisplay.textContent = `SCORE: ${score}`;
+
+    progressBar.style.width =
+        `${(currentQuestion / questions.length) * 100}%`;
+
+    questionText.textContent = q.q;
+    feedback.textContent = "";
+    nextButton.style.display = "none";
+
+    optionsContainer.innerHTML = "";
+
+    q.options.forEach((option,index) => {
+        const button = document.createElement("button");
+
+        button.className = "trivia-option";
+        button.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
+
+        button.addEventListener("click", () => selectAnswer(index));
+
+        optionsContainer.appendChild(button);
+    });
+}
+
+function selectAnswer(selected) {
+    if (answered) return;
+
+    answered = true;
+
+    const q = questions[currentQuestion];
+    const buttons = optionsContainer.querySelectorAll("button");
+
+    buttons.forEach((button,index) => {
+        button.disabled = true;
+
+        if (index === q.answer) {
+            button.classList.add("correct");
+        }
+
+        if (index === selected && selected !== q.answer) {
+            button.classList.add("wrong");
+        }
+    });
+
+    if (selected === q.answer) {
+        score++;
+        feedback.textContent = "CORRECT! " + q.explanation;
+    } else {
+        feedback.textContent = "NOT QUITE. " + q.explanation;
+    }
+
+    scoreDisplay.textContent = `SCORE: ${score}`;
+    nextButton.style.display = "inline-block";
+
+    if (currentQuestion === questions.length - 1) {
+        nextButton.textContent = "SEE YOUR RESULTS →";
+    }
+}
+
+nextButton.addEventListener("click", () => {
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+        loadQuestion();
+    } else {
+        showResults();
+    }
+});
+
+function showResults() {
+    document.getElementById("triviaGame").style.display = "none";
+
+    const result = document.getElementById("triviaResult");
+    result.style.display = "block";
+
+    let rank;
+    let description;
+
+    if (score <= 3) {
+        rank = "NPC ARC";
+        description = "Looks like the story needs a little more reading.";
+    } else if (score <= 5) {
+        rank = "CREW MEMBER";
+        description = "You know the basics. Keep developing your lore knowledge.";
+    } else if (score <= 7) {
+        rank = "FIRST GENERATION";
+        description = "Impressive. You're becoming a serious Lookism reader.";
+    } else if (score <= 9) {
+        rank = "PRE-GEN LEGEND";
+        description = "Your knowledge is getting dangerously impressive.";
+    } else {
+        rank = "LOOKISM WIKI INCARNATE";
+        description = "At this point, you might actually be PTJ.";
+    }
+
+    document.getElementById("finalRank").textContent = rank;
+
+    document.getElementById("finalScore").textContent =
+        `FINAL SCORE: ${score} / ${questions.length}`;
+
+    document.getElementById("finalDescription").textContent = description;
+
+    progressBar.style.width = "100%";
+}
+
+function restartTrivia() {
+    currentQuestion = 0;
+    score = 0;
+
+    document.getElementById("triviaGame").style.display = "block";
+    document.getElementById("triviaResult").style.display = "none";
+
+    nextButton.textContent = "NEXT QUESTION →";
+
+    loadQuestion();
+}
+
+loadQuestion();
+
+
+/* =====================================
+   LUCKY DRAW
+===================================== */
+
+const randomEvents = [
+    "You have unlocked 24 hours of premium relaxation.",
+    "A mysterious character has challenged you to a staring contest.",
+    "You have received +10 creativity points.",
+    "The system recommends reading another Lookism chapter.",
+    "Congratulations. You are now the CEO of doing absolutely nothing.",
+    "A random stranger has complimented your character development.",
+    "You have unlocked the ability to ignore unnecessary drama.",
+    "Your current mission: find something that makes you laugh.",
+    "You have received an imaginary million-dollar inheritance.",
+    "The system has detected an excessive amount of main character energy."
+];
+
+function luckyDraw() {
+    const result = document.getElementById("drawResult");
+
+    result.textContent = "GENERATING YOUR DESTINY...";
+
+    setTimeout(() => {
+        const random =
+            randomEvents[Math.floor(Math.random() * randomEvents.length)];
+
+        result.textContent = random;
+    }, 650);
+}
+
+
+/* =====================================
+   RANDOM MESSAGE GENERATOR
+===================================== */
+
+const randomMessages = [
+    "Your brain has 37 tabs open. At least 12 are playing music.",
+    "Breaking news: You are allowed to take a break.",
+    "The council has decided that you deserve a snack.",
+    "Your current side quest is to stop arguing with imaginary scenarios.",
+    "Somewhere, a Lookism character is probably having a worse day.",
+    "You have survived 100% of your previous difficult days.",
+    "System error: Too much thinking detected. Please restart your brain.",
+    "Your future self is probably hoping you get some rest.",
+    "Not every inconvenience is a season finale.",
+    "The universe has temporarily disabled your responsibility settings."
+];
+
+function generateMessage() {
+    const message =
+        randomMessages[Math.floor(Math.random() * randomMessages.length)];
+
+    document.getElementById("randomMessage").textContent = message;
+}
+
+
+/* =====================================
+   SECRET COMPLIMENTS
+===================================== */
+
+const compliments = [
+    "You deserve kindness, including from yourself.",
+    "Your creativity is worth making time for.",
+    "You don't need to have everything figured out.",
+    "There is more to your identity than your difficult days.",
+    "You are allowed to grow at your own pace.",
+    "Your interests, imagination, and personality make your story yours.",
+    "You can take life one manageable step at a time.",
+    "Resting does not make you lazy.",
+    "You don't have to be perfect to be appreciated.",
+    "Your story is not defined by one difficult chapter."
+];
+
+function newCompliment() {
+    const compliment =
+        compliments[Math.floor(Math.random() * compliments.length)];
+
+    document.getElementById("complimentText").textContent = compliment;
+}
+
+</script>
+
+</body>
+</html>
